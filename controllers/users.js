@@ -25,10 +25,6 @@ module.exports.renderLogin = (req, res) => {
 	res.render('users/login');
 };
 
-module.exports.renderLogin = (req, res) => {
-    res.render('users/login');
-};
-
 module.exports.login = (req, res) => {
     req.flash('success', 'Welcome Back!');
     const redirectUrl = req.session.returnTo || '/pictures';
