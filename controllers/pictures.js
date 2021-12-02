@@ -65,3 +65,38 @@ module.exports.showPicture = async(req, res) => {
     }
     res.render('pictures/show', { picture });
 };
+
+module.exports.renderEditForm = async (req, res) => {
+	const { id } = req.params;
+	const picture = await Picture.findById(id);
+	if (!picture) {
+		req.flash('error', 'Cannot find that picture!');
+		return res.redirect('/pictures');
+	}
+	res.render('pictures/edit', { picture });
+};
+
+module.exports.updatePicture = async (req, res) => {
+	const { id } = req.params;
+	const picture = await Picture.findByIdAndUpdate(id, { ...req.body.picture });
+	const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+	picture.images.push(...imgs);
+	await picture.save();
+	if (req.body.deleteImages) {
+		await picture.updateOne({
+			$pull: { images: { filename: { $in: req.body.deleteImages } } },
+		});
+	}
+	req.flash('success', 'Successfully updated picture!');
+	res.redirect(`/pictures/${picture._id}`);
+};
+
+module.exports.deletePicture = async (req, res) => {
+	const { id } = req.params;
+	await Picture.findByIdAndDelete(id);
+	req.flash('success', 'Successfully deleted picture');
+	res.redirect('/pictures');
+};
+function escapeRegex(text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
