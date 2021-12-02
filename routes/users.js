@@ -26,4 +26,6 @@ router.get('/users/:id', catchAsync(users.getInfo));
 
 router.get('/users/:id/edit', catchAsync(users.renderEdit));
 
+router.put('/users/:id', isAuthorProfile, catchAsync(users.update));
+
 module.exports = router;
