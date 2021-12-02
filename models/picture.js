@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const ImageSchema = new Schema({
+	url: String,
+	filename: String,
+});
+
 const PictureSchema = new Schema({
 	title: String,
+	images: [ImageSchema],
 	geometry: {
 		lat: {
 			type: Number,
