@@ -3,9 +3,19 @@ const Schema = mongoose.Schema;
 
 const PictureSchema = new Schema({
 	title: String,
+	geometry: {
+		lat: {
+			type: Number,
+			required: false,
+		},
+		lng: {
+			type: Number,
+			required: false,
+		},
+	},
 	price: Number,
 	description: String,
-
+	location: String,
 	author: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
