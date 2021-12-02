@@ -37,3 +37,9 @@ module.exports.logout = (req, res) => {
     req.flash('success', 'Goodbye!');
     res.redirect('/pictures');
 };
+
+module.exports.getInfo = async (req, res) => {
+	const user = await User.findById(req.params.id);
+
+	res.render('users/show', { user });
+};
