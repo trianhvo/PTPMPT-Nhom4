@@ -43,3 +43,12 @@ module.exports.getInfo = async (req, res) => {
 
 	res.render('users/show', { user });
 };
+
+module.exports.renderEdit = async (req, res) => {
+	const user = await User.findById(req.params.id);
+	// res.render('users/edit', { user });
+	if (!user) {
+		req.flash('error', 'Cannot find that user!');
+	}
+	res.render('users/edit', { user });
+};

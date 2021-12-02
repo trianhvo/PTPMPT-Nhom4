@@ -24,4 +24,6 @@ router.get('/logout', users.logout);
 
 router.get('/users/:id', catchAsync(users.getInfo));
 
+router.get('/users/:id/edit', catchAsync(users.renderEdit));
+
 module.exports = router;
