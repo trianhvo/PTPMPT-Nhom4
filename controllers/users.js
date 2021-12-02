@@ -37,3 +37,25 @@ module.exports.logout = (req, res) => {
     req.flash('success', 'Goodbye!');
     res.redirect('/pictures');
 };
+
+module.exports.getInfo = async (req, res) => {
+	const user = await User.findById(req.params.id);
+
+	res.render('users/show', { user });
+};
+
+module.exports.renderEdit = async (req, res) => {
+	const user = await User.findById(req.params.id);
+	// res.render('users/edit', { user });
+	if (!user) {
+		req.flash('error', 'Cannot find that user!');
+	}
+	res.render('users/edit', { user });
+};
+
+module.exports.update = async (req, res) => {
+	const { id } = req.params;
+	const user = await User.findByIdAndUpdate(id, { ...req.body.user });
+	req.flash('success', 'Successfully updated profile!');
+	res.redirect(`/users/${user_id}`);
+};
