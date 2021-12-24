@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root123
+    volumes:
+      - ./volumes/mongo:/data/db
+  app1:
+    image: my-app
+    environment:
+      - APPID=1111
+  app2:
+    image: my-app
+    environment:
+      - APPID=2222
+  app3:
+    image: my-app
+    environment:
+      - APPID=3333
+  nginx:
+    image: nginx
+    ports:
+      - 8080:8080
+    volumes:
+      - ./volumes/nginx/conf.d:/etc/nginx/conf.d

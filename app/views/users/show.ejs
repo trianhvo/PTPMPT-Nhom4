@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <div class="col-md-4">
+        <h1 ><%= user.firstName + " " + user.lastName %></h1>
+        <div class="thumbnail">
+             <div class="caption"><a href="mailto: <%= user.email %>"><%= user.email %></a></div>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><%= user.bio%></p>
+        </div>
+        <!-- <% if(currentUser && user._id.equals(currentUser._id) ) { %>
+            <a class="btn btn-primary" href="/users/<%= user._id %>/edit">Edit Profile <i class="fas fa-edit"></i></a>
+        <% } %>
+        <p style="margin-top: 5px;"><%= user.bio %></p> -->
+    </div>
+    <% if(currentUser && user._id.equals(currentUser._id) ) { %>
+            <div class="col-md-8">
+        <div class="card-body">
+            <a class="card-link btn btn-info" href="/users/<%=user._id%>/edit">Edit</a>
+          </div>
+    </div>
+    <% } %>
+
+</div>
