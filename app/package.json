@@ -1,0 +1,42 @@
+{
+	"name": "ptpmpt-nhom4",
+	"version": "1.0.0",
+	"description": "Đề tài: Mạng xã hội chia sẻ ảnh\r Các công nghệ sử dụng:\r -Frontend: Html, Bootstrap, Ejs\r -Backend: Express\r -Database: Mongodb",
+	"main": "index.js",
+	"dependencies": {
+		"axios": "^0.24.0",
+		"connect-flash": "^0.1.1",
+		"connect-mongo": "^4.6.0",
+		"dotenv": "^10.0.0",
+		"ejs-mate": "^3.0.0",
+		"express": "^4.17.1",
+		"express-mongo-sanitize": "^2.1.0",
+		"express-session": "^1.17.2",
+		"joi": "^17.4.2",
+		"method-override": "^3.0.0",
+		"mongoose": "^6.0.12",
+		"multer": "^1.4.4",
+		"passport": "^0.5.0",
+		"passport-local": "^1.0.0",
+		"passport-local-mongoose": "^6.1.0",
+		"path": "^0.12.7",
+		"sanitize-html": "^2.5.3"
+	},
+	"scripts": {
+		"start": "node app",
+		"dev": "nodemon app"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/trianhvo/PTPMPT-Nhom4.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/trianhvo/PTPMPT-Nhom4/issues"
+	},
+	"homepage": "https://github.com/trianhvo/PTPMPT-Nhom4#readme",
+	"devDependencies": {
+		"nodemon": "^2.0.15"
+	}
+}
