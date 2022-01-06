@@ -1,0 +1,43 @@
+.profile {
+	max-width: 614px;
+	margin: 0 auto 30px;
+	justify-content: space-between;
+	.avatar {
+		width: 150px;
+		img {
+			width: 100%;
+			aspect-ratio: 1;
+		}
+	}
+	.edit {
+		margin-top: 10px;
+	}
+}
+
+@media (max-width: 768px) {
+	.profile {
+		margin: 0;
+		padding: 20px;
+		flex-direction: column;
+		> div {
+			padding: 0;
+		}
+		.avatar {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			img {
+				width: 100px;
+			}
+		}
+		.info {
+			h1 {
+				text-align: center;
+				margin: 10px 0;
+			}
+			div {
+				margin: 10px 0;
+			}
+		}
+	}
+}
