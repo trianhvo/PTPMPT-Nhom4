@@ -19,6 +19,8 @@ router
 
 router.get('/new', isLoggedIn, pictures.renderNewForm);
 
+router.get('/posts', pictures.getPosts);
+
 router
 	.route('/:id')
 	.get(catchAsync(pictures.showPicture))

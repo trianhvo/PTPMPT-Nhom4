@@ -4,6 +4,9 @@ const passport = require('passport');
 const catchAsync = require('../utils/catchAsync');
 const users = require('../controllers/users');
 const { isAuthorProfile } = require('../middleware');
+const multer = require('multer');
+
+const upload = multer({});
 
 router
 	.route('/register')
@@ -27,6 +30,11 @@ router.get('/users/:id', catchAsync(users.getInfo));
 
 router.get('/users/:id/edit', catchAsync(users.renderEdit));
 
-router.put('/users/:id', isAuthorProfile, catchAsync(users.update));
+router.put(
+	'/users/:id',
+	isAuthorProfile,
+	upload.single('avatar'),
+	catchAsync(users.update)
+);
 
 module.exports = router;
