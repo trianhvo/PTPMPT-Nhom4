@@ -1,0 +1,88 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+	<h1 class="text-center">Add New Picture</h1>
+	<div class="col-6 offset-3">
+		<form
+			action="/pictures"
+			method="POST"
+			novalidate
+			class="validated-form"
+			enctype="multipart/form-data"
+		>
+			<div class="mb-3">
+				<label class="form-label" for="title">Title</label>
+				<input
+					class="form-control"
+					type="text"
+					id="title"
+					name="picture[title]"
+					required
+				/>
+				<div class="valid-feedback">Good!</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="location">Location</label>
+				<input
+					class="form-control"
+					type="text"
+					id="location"
+					name="picture[location]"
+					required
+				/>
+				<div class="valid-feedback">Good!</div>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="description">Description</label>
+				<textarea
+					class="form-control"
+					type="text"
+					id="description"
+					name="picture[description]"
+					required
+				></textarea>
+				<div class="valid-feedback">Good!</div>
+			</div>
+			<div class="mb-3">
+				<div class="form-file custom-file">
+					<input
+						type="file"
+						class="form-file-input"
+						id="image"
+						name="image"
+						multiple
+					/>
+					<label class="form-file-label" for="image">
+						<span class="form-file-text custom-file-label"
+							>Choose image(s)...</span
+						>
+						<span class="form-file-button">Browse</span>
+					</label>
+				</div>
+			</div>
+			<div class="mb-3">
+				<button class="btn btn-success">Add picture</button>
+			</div>
+		</form>
+		<a href="/pictures">All pictures</a>
+	</div>
+</div>
+
+<script>
+	let autocomplete;
+	function initAutocompete() {
+		autocomplete = new google.maps.places.Autocomplete(
+			document.getElementById('location'),
+			{
+				types: ['establishment'],
+				componentRestrictions: { country: ['VN'] },
+				fields: ['place_id', 'geometry', 'name'],
+			}
+		);
+	}
+</script>
+
+<script
+	async
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7icLvRNCp8lIW8HsyEgwNoXRyXwjtbrk&libraries=places&callback=initAutocompete"
+></script>
