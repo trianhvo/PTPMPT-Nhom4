@@ -20,7 +20,6 @@ const PictureSchema = new Schema({
 			required: false,
 		},
 	},
-	price: Number,
 	description: String,
 	location: String,
 	author: {
@@ -33,6 +32,7 @@ const PictureSchema = new Schema({
 			ref: 'Review',
 		},
 	],
+	createAt: Date,
 });
 PictureSchema.post('findOneAndDelete', async function (doc) {
 	if (doc) {
