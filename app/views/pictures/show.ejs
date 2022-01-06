@@ -1,4 +1,21 @@
 <% layout('/layouts/boilerplate') %>
+<style>
+	.review {
+		position: relative;
+	}
+	.review .emoji-picker {
+		position: absolute;
+		top: 40px;
+		left: 10px;
+		background-color: #fff;
+		color: #aaa;
+		border-radius: 99px;
+		cursor: pointer;
+	}
+	.review .comment {
+		padding-right: 40px;
+	}
+</style>
 <link rel="stylesheet" href="/stylesheets/stars.css" />
 
 <footer>
@@ -106,16 +123,19 @@
 				<input type="radio" id="first-rate5" name="review[rating]" value="5" />
 				<label for="first-rate5" title="Amazing">5 stars</label>
 			</fieldset>
-			<div class="mb-3">
+			<div class="mb-3 review">
 				<label class="form-label" for="body">Comment</label>
 				<textarea
-					class="form-control"
+					class="form-control comment"
 					name="review[body]"
 					id="body"
 					cols="30"
 					rows="3"
 					required
 				></textarea>
+				<span class="material-icons-outlined emoji-picker">
+					sentiment_satisfied
+				</span>
 				<div class="valid-feedback">Good!</div>
 			</div>
 
@@ -154,3 +174,16 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJix9e7zSmV_qsDOWnRxcap-uAVcc86E&callback=initMap&libraries=&v=weekly"
 	async
 ></script>
+<script src="https://cdn.statically.io/gh/woody180/vanilla-javascript-emoji-picker/c6979f68/vanillaEmojiPicker.js"></script>
+<script>
+	new EmojiPicker({
+		trigger: [
+			{
+				selector: '.emoji-picker',
+				insertInto: ['.comment'], // '.selector' can be used without array
+			},
+		],
+		closeButton: true,
+		//specialButtons: green
+	});
+</script>
