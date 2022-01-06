@@ -1,25 +1,66 @@
 <% layout('layouts/boilerplate')%>
 
-<div class="row">
-    <div class="col-md-4">
-        <h1 ><%= user.firstName + " " + user.lastName %></h1>
-        <div class="thumbnail">
-             <div class="caption"><a href="mailto: <%= user.email %>"><%= user.email %></a></div>
-        </div>
-        <div class="card-body">
-            <p class="card-text"><%= user.bio%></p>
-        </div>
-        <!-- <% if(currentUser && user._id.equals(currentUser._id) ) { %>
-            <a class="btn btn-primary" href="/users/<%= user._id %>/edit">Edit Profile <i class="fas fa-edit"></i></a>
-        <% } %>
-        <p style="margin-top: 5px;"><%= user.bio %></p> -->
-    </div>
-    <% if(currentUser && user._id.equals(currentUser._id) ) { %>
-            <div class="col-md-8">
-        <div class="card-body">
-            <a class="card-link btn btn-info" href="/users/<%=user._id%>/edit">Edit</a>
-          </div>
-    </div>
-    <% } %>
+<link rel="stylesheet" href="/stylesheets/profile.css" />
+<link rel="stylesheet" href="/stylesheets/pic-card.css" />
 
+<div class="row profile">
+	<div class="avatar">
+		<img src="<%=user.avatar %>" alt="av" />
+	</div>
+	<div class="info">
+		<h1><%= user.firstName + " " + user.lastName %></h1>
+		<div class="mail">
+			<a href="mailto: <%= user.email %>"><%= user.email %></a>
+		</div>
+		<div class="bio">
+			<p><%= user.bio%></p>
+		</div>
+	</div>
+	<% if(currentUser && user._id.equals(currentUser._id) ) { %>
+	<div class="edit">
+		<a class="card-link btn btn-info" href="/users/<%=user._id%>/edit">Edit</a>
+	</div>
+	<% } %>
 </div>
+
+<div class="container list-post">
+	<% for (let picture of pictures) {%>
+	<div class="mb-3">
+		<div class="row ccard" id="<%= picture._id %>">
+			<div class="author">
+				<div class="avatar">
+					<img src="<%=picture.author.avatar %>" alt="av" />
+				</div>
+				<a href="/users/<%=picture.author._id %>" class="username"
+					><%= picture.author.username %></a
+				>
+			</div>
+			<a href="/pictures/<%=picture._id%>" class="img">
+				<span class="total-pic"><%=picture.images.length %></span>
+				<%if(picture.images.length) {%>
+				<img alt="" src="<%=picture.images[0].url%>" />
+				<% }else {%>
+				<img alt="" src="https://source.unsplash.com/random/1920x1080" />
+				<% } %>
+			</a>
+			<div class="info">
+				<h5 class="card-title"><%= picture.title %></h5>
+				<p class="card-text"><%= picture.description %></p>
+				<p class="card-text">
+					<small class="text-muted">Location: <%= picture.location%></small>
+				</p>
+				<!-- <a class="btn btn-primary" href="/pictures/<%=picture._id%>"
+					>View <%=picture.title%></a
+				> -->
+			</div>
+			<div class="rating">
+				<span class="material-icons-outlined star"> star </span>
+				<span class="rate"><%= picture.reviews.mean %></span>
+			</div>
+		</div>
+	</div>
+	<% }%>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+<script src="/javascripts/loadImg.js"></script>
