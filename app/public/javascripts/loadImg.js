@@ -17,7 +17,7 @@ function loadPost() {
 		'<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
 	axios({
 		method: 'get',
-		url: `http://localhost:3000/pictures/posts?limit=${limit}&skip=${skip}${
+		url: `/pictures/posts?limit=${limit}&skip=${skip}${
 			search ? '&search=' + search : ''
 		}${uid ? '&uid=' + uid : ''}`,
 		withCredentials: true,
