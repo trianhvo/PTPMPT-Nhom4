@@ -102,7 +102,10 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updatePicture = async (req, res) => {
 	const { id } = req.params;
 	const picture = await Picture.findByIdAndUpdate(id, { ...req.body.picture });
-	const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+	const imgs = req.files.map((f) => ({
+		url: 'data:image/png;base64,' + f.buffer.toString('base64'),
+		filename: Math.round(Math.random() * 1e9),
+	}));
 	picture.images.push(...imgs);
 	await picture.save();
 	if (req.body.deleteImages) {
