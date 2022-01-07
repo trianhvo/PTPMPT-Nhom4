@@ -51,7 +51,7 @@ module.exports.createPicture = async (req, res, next) => {
 	const geoData = await axios.get(
 		`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(
 			req.body.picture.location
-		)}&key=AIzaSyBaJix9e7zSmV_qsDOWnRxcap-uAVcc86E`
+		)}&key=AIzaSyB7tZ23ZxcfQa4_rqdKqCelWbVyENUTXpM`
 	);
 	console.log(geoData.data);
 	const { lat, lng } = geoData.data.results[0].geometry.location;
